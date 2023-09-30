@@ -2,11 +2,15 @@
 
 import { AnimatePresence, easeIn, easeInOut, motion } from 'framer-motion'
 import { usePathname, useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const url = `${pathname}?${searchParams}`
+  // useEffect(() => {
+  //   const url = `${pathname}?${searchParams}`
+  // }, [pathname, searchParams])
   return (
     <AnimatePresence mode="wait">
       <motion.div

@@ -1,6 +1,6 @@
 import './globals.css'
 import localFont from 'next/font/local'
-import PageTransition from '@/components/page-transition'
+// import PageTransition from '@/components/page-transition'
 import Lenis from '@/components/Lenis'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
@@ -52,10 +52,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Lenis>
         <body className={`$(manrope.className) min-h-screen overflow-hidden bg-gray-50 antialiased`}>
           <Header />
-          <PageTransition>
-            <main>{children}</main>
-            <Footer />
-          </PageTransition>
+          {/* <PageTransition> */}
+          <main>{children}</main>
+          <Footer />
+          {/* </PageTransition> */}
         </body>
       </Lenis>
     </html>
