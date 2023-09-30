@@ -2,26 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-medium tracking-wider;
   }
 }
 
+/* lenis */
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+/* base */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'manrope', sans-serif;
+  width: calc(100vw - (100vw - 100%));
+}
+
+[x-cloak] {
+  visibility: hidden !important;
+}
+
+.stroke {
+  color: transparent;
+  -webkit-text-stroke: 1px #1d1d1d;
+}
+
+/* Animation */
+html.is-changing .transition-fade {
+  transition: 0.5s;
+  opacity: 1;
+}
+html.is-animating .transition-fade {
+  opacity: 0;
+}
+
+.slide-down {
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* prose style */
+.prose {
+  @apply max-w-5xl;
+}
+.prose p {
+  @apply mb-4 leading-relaxed;
 }
