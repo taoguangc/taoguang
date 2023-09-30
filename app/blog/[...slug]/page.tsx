@@ -1,4 +1,5 @@
 // export const runtime = "edge"
+export const runtime = 'edge'
 
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'

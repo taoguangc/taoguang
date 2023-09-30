@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import Link from 'next/link'
 import { allPosts, type Post } from 'contentlayer/generated'
 import Pagination from '@/components/pagination'
