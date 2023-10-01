@@ -11,12 +11,6 @@ interface PostProps {
   }
 }
 
-// async function getPostFromParams({ params: { slug } }: PostProps) {
-//   const post = allPosts.find((post) => post._raw.flattenedPath === slug)
-//   if (!post) null
-//   return post
-// }
-
 export async function generateMetadata({ params: { slug } }: PostProps): Promise<Metadata | undefined> {
   const post = allPosts.find((post) => post._raw.flattenedPath === slug)
 
