@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <Lenis>
-        <body className={`$(manrope.className) min-h-screen overflow-hidden bg-gray-50 antialiased`}>
+        <body className={`$(manrope.className) min-h-screen bg-gray-50 antialiased`}>
           <Header />
           {/* <PageTransition> */}
           <main>{children}</main>

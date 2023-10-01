@@ -17,8 +17,7 @@ export type Page = {
   description?: string | undefined
   /** MDX file body */
   body: MDX
-  slug: string
-  slugAsParams: string
+  url: string
 }
 
 export type Post = {
@@ -33,8 +32,7 @@ export type Post = {
   authorUrl?: string | undefined
   /** MDX file body */
   body: MDX
-  slug: string
-  slugAsParams: string
+  url: string
 }  
 
 /** Nested types */

@@ -1,15 +1,5 @@
 // contentlayer.config.js
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
-var computedFields = {
-  slug: {
-    type: "string",
-    resolve: (doc) => `/${doc._raw.flattenedPath}`
-  },
-  slugAsParams: {
-    type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/")
-  }
-};
 var Page = defineDocumentType(() => ({
   name: "Page",
   filePathPattern: "pages/**/*.mdx",
@@ -23,7 +13,12 @@ var Page = defineDocumentType(() => ({
       type: "string"
     }
   },
-  computedFields
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (page) => `/${page._raw.flattenedPath}`
+    }
+  }
 }));
 var Post = defineDocumentType(() => ({
   name: "Post",
@@ -48,7 +43,12 @@ var Post = defineDocumentType(() => ({
       type: "string"
     }
   },
-  computedFields
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (post) => `/blog/${post._raw.flattenedPath}`
+    }
+  }
 }));
 var contentlayer_config_default = makeSource({
   contentDirPath: "content",
@@ -59,4 +59,4 @@ export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-YE6WN2XZ.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-IPTDJCP2.mjs.map
