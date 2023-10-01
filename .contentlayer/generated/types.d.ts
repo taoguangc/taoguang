@@ -17,7 +17,7 @@ export type Page = {
   description?: string | undefined
   /** MDX file body */
   body: MDX
-  url: string
+  slug: string
 }
 
 export type Post = {

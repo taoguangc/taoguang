@@ -2,23 +2,23 @@ export const runtime = 'edge'
 
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
-import { allPosts } from 'contentlayer/generated'
+import { allPages } from 'contentlayer/generated'
 import { Mdx } from '@/components/mdx-components'
 
-interface PostProps {
+interface PageProps {
   params: {
     slug: string
   }
 }
 
-export async function generateMetadata({ params: { slug } }: PostProps): Promise<Metadata | undefined> {
-  const post = allPosts.find((post) => post._raw.flattenedPath === slug)
+export async function generateMetadata({ params: { slug } }: PageProps): Promise<Metadata | undefined> {
+  const page = allPages.find((page) => page._raw.flattenedPath === slug)
 
-  if (!post) {
+  if (!page) {
     return {}
   }
 
-  const { title, description } = post
+  const { title, description } = page
 
   return {
     title,
@@ -27,21 +27,21 @@ export async function generateMetadata({ params: { slug } }: PostProps): Promise
 }
 
 export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post._raw.flattenedPath,
+  return allPages.map((page) => ({
+    slug: page._raw.flattenedPath,
   }))
 }
 
-export default async function PostPage({ params: { slug } }: PostProps) {
-  const post = allPosts.find((post) => post._raw.flattenedPath === slug)
-  if (!post) notFound()
+export default async function PagePage({ params: { slug } }: PageProps) {
+  const page = allPages.find((page) => page._raw.flattenedPath === slug)
+  if (!page) notFound()
 
   return (
     <article className="prose mx-auto py-6">
-      <h1>{post.title}</h1>
-      {post.description && <p className="text-xl">{post.description}</p>}
+      <h1>{page.title}</h1>
+      {page.description && <p className="text-xl">{page.description}</p>}
       <hr />
-      <Mdx code={post.body.code} />
+      <Mdx code={page.body.code} />
     </article>
   )
 }

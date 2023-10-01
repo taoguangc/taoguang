@@ -14,7 +14,7 @@ var Page = defineDocumentType(() => ({
     }
   },
   computedFields: {
-    url: {
+    slug: {
       type: "string",
       resolve: (page) => `/${page._raw.flattenedPath}`
     }
@@ -59,4 +59,4 @@ export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-BRUHT236.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-7A2VAGFO.mjs.map
