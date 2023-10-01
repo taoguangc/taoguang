@@ -19,7 +19,7 @@ export default function Posts({ searchParams }: { searchParams: { [key: string]:
       {PagiPosts.map((post: Post) => (
         <article key={post._id} className="mb-8">
           <h2 className="text-xl">
-            <Link href={post._raw.flattenedPath} className="text-blue-700 hover:text-blue-900">
+            <Link href={post.slug} className="text-blue-700 hover:text-blue-900">
               {post.title}
             </Link>
           </h2>
