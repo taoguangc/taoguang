@@ -44,7 +44,7 @@ var Post = defineDocumentType(() => ({
     }
   },
   computedFields: {
-    url: {
+    slug: {
       type: "string",
       resolve: (post) => `/blog/${post._raw.flattenedPath}`
     }
@@ -59,4 +59,4 @@ export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-IPTDJCP2.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-BRUHT236.mjs.map
