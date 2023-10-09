@@ -7,33 +7,43 @@ import { Mdx } from '@/components/mdx-components'
 
 interface PageProps {
   params: {
-    slug: string
+    slug: string[]
   }
 }
 
-export async function generateMetadata({ params: { slug } }: PageProps): Promise<Metadata | undefined> {
+async function getPageFromParams(params: PageProps['params']) {
+  const slug = params?.slug?.join('/')
   const page = allPages.find((page) => page._raw.flattenedPath === slug)
+
+  if (!page) {
+    null
+  }
+
+  return page
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata | undefined> {
+  const page = await getPageFromParams(params)
 
   if (!page) {
     return {}
   }
 
   const { title, description } = page
-
   return {
     title,
     description,
   }
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<PageProps['params'][]> {
   return allPages.map((page) => ({
-    slug: page._raw.flattenedPath,
+    slug: page._raw.flattenedPath.split('/'),
   }))
 }
 
-export default async function PagePage({ params: { slug } }: PageProps) {
-  const page = allPages.find((page) => page._raw.flattenedPath === slug)
+export default async function PagePage({ params }: PageProps) {
+  const page = await getPageFromParams(params)
   if (!page) notFound()
 
   return (

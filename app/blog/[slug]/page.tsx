@@ -7,12 +7,23 @@ import { Mdx } from '@/components/mdx-components'
 
 interface PostProps {
   params: {
-    slug: string
+    slug: string[]
   }
 }
 
-export async function generateMetadata({ params: { slug } }: PostProps): Promise<Metadata | undefined> {
+async function getPageFromParams(params: PostProps['params']) {
+  const slug = params?.slug?.join('/')
   const post = allPosts.find((post) => post._raw.flattenedPath === slug)
+
+  if (!post) {
+    null
+  }
+
+  return post
+}
+
+export async function generateMetadata({ params }: PostProps): Promise<Metadata | undefined> {
+  const post = await getPageFromParams(params)
 
   if (!post) {
     return {}
@@ -26,14 +37,15 @@ export async function generateMetadata({ params: { slug } }: PostProps): Promise
   }
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<PostProps['params'][]> {
   return allPosts.map((post) => ({
-    slug: post._raw.flattenedPath,
+    slug: post._raw.flattenedPath.split('/'),
   }))
 }
 
-export default async function PostPage({ params: { slug } }: PostProps) {
-  const post = allPosts.find((post) => post._raw.flattenedPath === slug)
+export default async function PostPage({ params }: PostProps) {
+  // const post = allPosts.find((post) => post._raw.flattenedPath === slug)
+  const post = await getPageFromParams(params)
   if (!post) notFound()
 
   return (
