@@ -15,9 +15,7 @@ async function getPageFromParams(params: PageProps['params']) {
   const slug = params?.slug?.join('/')
   const page = allPages.find((page) => page._raw.flattenedPath === slug)
 
-  if (!page) {
-    null
-  }
+  if (!page) null
 
   return page
 }
